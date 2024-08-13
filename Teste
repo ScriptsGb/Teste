@@ -1,27 +1,16 @@
+-- Create ScreenGui
 local ScreenGui = Instance.new("ScreenGui")
-local main = Instance.new("Frame")
-local stroke1 = Instance.new("UIStroke")
-local stroke2 = Instance.new("UIStroke")
-local stroke3 = Instance.new("UIStroke")
-local scrollingFrame = Instance.new("ScrollingFrame")
-local freimi = Instance.new("Frame")
-local anotados = Instance.new("TextBox")
-local ants = Instance.new("TextLabel")
-local x = Instance.new("ImageButton")
-local editt = Instance.new("Frame")
-local editt2 = Instance.new("Frame")
-local reload = Instance.new("ImageButton")
-local fonte = Instance.new("ImageButtom")
-
 ScreenGui.Name = "ScreenGui"
-
-local existingScreenGui = game.CoreGui:FindFirstChild(ScreenGui.Name)
-if existingScreenGui and existingScreenGui ~= ScreenGui then
-existingScreenGui:Destroy()
-end
-
 ScreenGui.Parent = game.CoreGui
 
+-- Check for existing ScreenGui and destroy it
+local existingScreenGui = game.CoreGui:FindFirstChild(ScreenGui.Name)
+if existingScreenGui and existingScreenGui ~= ScreenGui then
+    existingScreenGui:Destroy()
+end
+
+-- Create main frame
+local main = Instance.new("Frame")
 main.Name = "main"
 main.Parent = ScreenGui
 main.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -31,12 +20,18 @@ main.BackgroundTransparency = 0
 main.Active = true
 main.Draggable = true
 
-stroke1.Name = "Stroke1"
-stroke1.Parent = main
-stroke1.Color = Color3.fromRGB(255, 255, 255)
-stroke1.Thickness = 5
-stroke1.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+-- Create strokes
+local function createStroke(parent, thickness)
+    local stroke = Instance.new("UIStroke")
+    stroke.Parent = parent
+    stroke.Color = Color3.fromRGB(255, 255, 255)
+    stroke.Thickness = thickness
+    stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    return stroke
+end
 
+local stroke1 = createStroke(main, 5)
+local freimi = Instance.new("Frame")
 freimi.Name = "freimi"
 freimi.Parent = main
 freimi.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -44,6 +39,9 @@ freimi.Size = UDim2.new(0, 226, 0, 226)
 freimi.Position = UDim2.new(0, 12, 0, 58.5)
 freimi.BackgroundTransparency = 0
 
+local stroke2 = createStroke(freimi, 4)
+
+local scrollingFrame = Instance.new("ScrollingFrame")
 scrollingFrame.Name = "ScrollingFrame"
 scrollingFrame.Parent = main
 scrollingFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
@@ -53,6 +51,7 @@ scrollingFrame.CanvasSize = UDim2.new(0, 0, 25, 0)
 scrollingFrame.ScrollBarThickness = 5
 scrollingFrame.BorderSizePixel = 0
 
+local anotados = Instance.new("TextBox")
 anotados.Name = "Anotados"
 anotados.Parent = scrollingFrame
 anotados.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
@@ -70,12 +69,7 @@ anotados.Font = Enum.Font.FredokaOne
 anotados.TextSize = 24
 anotados.BorderSizePixel = 0
 
-stroke2.Name = "Stroke2"
-stroke2.Parent = freimi
-stroke2.Color = Color3.fromRGB(255, 255, 255)
-stroke2.Thickness = 4
-stroke2.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-
+local ants = Instance.new("TextLabel")
 ants.Name = "Ants"
 ants.Parent = main
 ants.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -90,6 +84,7 @@ ants.TextSize = 30
 ants.TextXAlignment = Enum.TextXAlignment.Center
 ants.TextYAlignment = Enum.TextYAlignment.Center
 
+local x = Instance.new("ImageButton")
 x.Name = "X"
 x.Parent = main
 x.Position = UDim2.new(0.850, 0, 0.02, 0)
@@ -98,9 +93,10 @@ x.Image = "http://www.roblox.com/asset/?id=18914957818"
 x.BackgroundTransparency = 1
 
 x.MouseButton1Down:Connect(function()
-main.Position = UDim2.new(9999, 0, 9999, 0)
+    main.Position = UDim2.new(9999, 0, 9999, 0)
 end)
 
+local editt = Instance.new("Frame")
 editt.Name = "editt"
 editt.Parent = main
 editt.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -109,12 +105,9 @@ editt.Size = UDim2.new(0, 40, 0, 200)
 editt.BackgroundTransparency = 0
 editt.BorderSizePixel = 0
 
-stroke3.Name = "Stroke3"
-stroke3.Parent = editt
-stroke3.Color = Color3.fromRGB(255, 255, 255)
-stroke3.Thickness = 5
-stroke3.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+createStroke(editt, 5)
 
+local editt2 = Instance.new("Frame")
 editt2.Name = "editt2"
 editt2.Parent = main
 editt2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -123,6 +116,7 @@ editt2.Size = UDim2.new(0, 40, 0, 200)
 editt2.BackgroundTransparency = 0
 editt2.BorderSizePixel = 0
 
+local reload = Instance.new("ImageButton")
 reload.Name = "Reload"
 reload.Parent = main
 reload.Position = UDim2.new(1.010, 0, 0.27, 0)
@@ -131,99 +125,70 @@ reload.Image = "http://www.roblox.com/asset/?id=18915392655"
 reload.BackgroundTransparency = 1
 
 reload.MouseButton1Down:Connect(function()
-     main.Position = UDim2.new(9999, 0, 9999, 0)
+    main.Position = UDim2.new(9999, 0, 9999, 0)
 
-local ScreenGui = Instance.new("ScreenGui")
-local izi = Instance.new("Frame")
-local stroke1 = Instance.new("UIStroke")
-local sim = Instance.new("TextButton")
-local nao = Instance.new("TextButton")
-local pgt = Instance.new("TextLabel")
+    -- Create a new ScreenGui for confirmation
+    local confirmationGui = Instance.new("ScreenGui")
+    confirmationGui.Name = "ScreenGui"
+    confirmationGui.Parent = game.CoreGui
 
-ScreenGui.Name = "ScreenGui"
-ScreenGui.Parent = game.CoreGui
+    local izi = Instance.new("Frame")
+    izi.Name = "izi"
+    izi.Parent = confirmationGui
+    izi.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    izi.Size = UDim2.new(0, 0, 0, 0)
+    izi.Position = UDim2.new(0.5, 0, 0.5, 0)
+    izi.AnchorPoint = Vector2.new(0.5, 0.5)
+    izi.BackgroundTransparency = 0
 
-izi.Name = "izi"
-izi.Parent = ScreenGui
-izi.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-izi.Size = UDim2.new(0, 0, 0, 0)
-izi.Position = UDim2.new(0.5, 0, 0.5, 0)
-izi.AnchorPoint = Vector2.new(0.5, 0.5)
-izi.BackgroundTransparency = 0
+    local stroke = createStroke(izi, 5)
 
-stroke1.Name = "Stroke1"
-stroke1.Parent = izi
-stroke1.Color = Color3.fromRGB(255, 255, 255)
-stroke1.Thickness = 5
-stroke1.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    local corner1 = Instance.new("UICorner")
+    corner1.CornerRadius = UDim.new(0, 15)
+    corner1.Parent = izi
 
-local corner1 = Instance.new("UICorner")
-corner1.CornerRadius = UDim.new(0, 15)
-corner1.Parent = izi
+    local sim = Instance.new("TextButton")
+    sim.Name = "Sim"
+    sim.Parent = izi
+    sim.BackgroundColor3 = Color3.fromRGB(65, 245, 45)
+    sim.Position = UDim2.new(0.1, 0, 0.6, 0)
+    sim.Size = UDim2.new(0, 100, 0, 50)
+    sim.Text = "Sim"
+    sim.TextColor3 = Color3.fromRGB(255, 255, 255)
+    sim.TextSize = 20
+    sim.Font = Enum.Font.FredokaOne
 
-sim.Name = "Sim"
-sim.Parent = izi
-sim.BackgroundColor3 = Color3.fromRGB(65, 245, 45)
-sim.Position = UDim2.new(0.1, 0, 0.6, 0)
-sim.Size = UDim2.new(0, 100, 0, 50)
-sim.Text = "Sim"
-sim.TextColor3 = Color3.fromRGB(255, 255, 255)
-sim.TextSize = 20
-sim.Font = Enum.Font.FredokaOne
+    local corner2 = Instance.new("UICorner")
+    corner2.CornerRadius = UDim.new(0, 10)
+    corner2.Parent = sim
 
-sim.MouseButton1Down:Connect(function()
-izi.Position = UDim2.new(9999, 0, 9999, 0)
-main.Position = UDim2.new(0.020, 0, 0.1, 0)
-pgt.Position = UDim2.new(9999, 0, 9999, 0)
+    sim.MouseButton1Down:Connect(function()
+        izi.Position = UDim2.new(9999, 0, 9999, 0)
+        main.Position = UDim2.new(0.020, 0, 0.1, 0)
+        anotados.Text = ""
+    end)
 
-anotados.Text = ""
-end)
+    local nao = Instance.new("TextButton")
+    nao.Name = "Não"
+    nao.Parent = izi
+    nao.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+    nao.Position = UDim2.new(0.55, 0, 0.6, 0)
+    nao.Size = UDim2.new(0, 100, 0, 50)
+    nao.Text = "Não"
+    nao.TextColor3 = Color3.fromRGB(255, 255, 255)
+    nao.TextSize = 20
+    nao.Font = Enum.Font.FredokaOne
 
-local corner2 = Instance.new("UICorner")
-corner2.CornerRadius = UDim.new(0, 10)
-corner2.Parent = sim
+    local corner3 = Instance.new("UICorner")
+    corner3.CornerRadius = UDim.new(0, 10)
+    corner3.Parent = nao
 
-nao.Name = "Não"
-nao.Parent = izi
-nao.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-nao.Position = UDim2.new(0.55, 0, 0.6, 0)
-nao.Size = UDim2.new(0, 100, 0, 50)
-nao.Text = "Não"
-nao.TextColor3 = Color3.fromRGB(255, 255, 255)
-nao.TextSize = 20
-nao.Font = Enum.Font.FredokaOne
+    nao.MouseButton1Down:Connect(function()
+        izi.Position = UDim2.new(9999, 0, 9999, 0)
+        main.Position = UDim2.new(0.020, 0, 0.1, 0)
+    end)
 
-nao.MouseButton1Down:Connect(function()
-izi.Position = UDim2.new(9999, 0, 9999, 0)
-main.Position = UDim2.new(0.020, 0, 0.1, 0)
-pgt.Position = UDim2.new(9999, 0, 9999, 0)
-end)
-
-local corner2 = Instance.new("UICorner")
-corner2.CornerRadius = UDim.new(0, 10)
-corner2.Parent = nao
-
-pgt.Name = "pgt"
-pgt.Parent = izi
-pgt.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-pgt.Size = UDim2.new(1, 0, 1, 0)
-pgt.Position = UDim2.new(0.5, 0, 0.3, 0)
-pgt.AnchorPoint = Vector2.new(0.5, 0.5)
-pgt.BackgroundTransparency = 1
-pgt.Text = "Você realmente deseja\nreiniciar o texto?"
-pgt.TextColor3 = Color3.fromRGB(255, 255, 255)
-pgt.TextSize = 30
-pgt.Font = Enum.Font.FredokaOne
-pgt.TextWrapped = true
-
-local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
-local tween = game:GetService("TweenService"):Create(izi, tweenInfo, {Size = UDim2.new(0, 300, 0, 200)})
-tween:Play()
-end)
-
-fonte.Name = "Fonte"
-fonte.Parent = main
-fonte.Position = UDim2.new(1.010, 0, 0.32, 0)
-fonte.Size = UDim2.new(0, 40, 0, 40)
-fonte.Image = "http://www.roblox.com/asset/?id=18915390118"
-fonte.BackgroundTransparency = 1
+    local pgt = Instance.new("TextLabel")
+    pgt.Name = "pgt"
+    pgt.Parent = izi
+    pgt.BackgroundColor3 =
